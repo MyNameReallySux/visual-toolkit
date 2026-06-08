@@ -1,0 +1,25 @@
+---
+title: Dynamic bands (calendar)
+description: makeDynamicBandScale — per-item pixel widths via selectBandwidth.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import DynamicBandScaleDemo from "../../../components/demos/DynamicBandScaleDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/dynamic-band-scale.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/dynamic-band-scale.ts?raw";
+
+`makeDynamicBandScale` lets each item carry its own pixel width via `selectBandwidth`.
+Here a 14-day calendar gives weekends a narrower column. Cell colors blend the column color
+with the row color via `d3.interpolateRgb`. Drag the slider to shrink or expand weekends.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Use the control below to adjust the weekend column width and see how the scale
+reflows the calendar grid in real time.
+
+<DynamicBandScaleDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

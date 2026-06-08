@@ -1,0 +1,30 @@
+---
+title: Introduction
+description: Why d3-band-scales — explicit pixel widths instead of fractional bands.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import BandScalesIntroDemo from "../../../components/demos/BandScalesIntroDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/band-scales-intro.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/band-scales-intro.ts?raw";
+
+`d3.scaleBand` divides a range into uniform bands by fraction — you have no
+direct control over pixel widths. As soon as items differ in importance, you
+need to manually derive the arithmetic.
+
+`d3-band-scales` flips the model: you state the exact pixel bandwidth and gap
+you want, and the library computes positions from them. Getters are named and
+typed (`.getX0`, `.getBandwidth`, `.getGap`) rather than returning bare numbers
+from a generic call. CSS-string values like `"24px"` are accepted everywhere a
+number is.
+
+The comparison below shows the same five items rendered by each approach:
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<BandScalesIntroDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

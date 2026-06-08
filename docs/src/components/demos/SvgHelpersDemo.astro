@@ -1,0 +1,35 @@
+<div class="demo-card">
+  <div class="demo-card-header">applyRectangleAsProps + estimateSvgTextSize</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="svg-helpers"></div>
+    <div class="svg-canvas" data-demo="svg-helpers"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import { renderSvgHelpers } from "../../demo-lib/examples/svg-helpers";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="svg-helpers"]'
+  );
+  const mount = document.querySelector<HTMLElement>('[data-demo="svg-helpers"]');
+
+  if (controls && mount) {
+    let fontSize = 11;
+    const rerender = () => renderSvgHelpers(mount, fontSize);
+
+    makeSlider(controls, {
+      labelText: "fontSize px",
+      min: 8,
+      max: 20,
+      initial: fontSize,
+      onChange: (v) => {
+        fontSize = v;
+        rerender();
+      },
+    });
+
+    rerender();
+  }
+</script>

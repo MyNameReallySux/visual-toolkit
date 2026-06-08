@@ -1,0 +1,25 @@
+---
+title: Margins & gaps
+description: padStart, padEnd, and content offsets — anatomy of the scale's internal zones.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import MarginsGapsDemo from "../../../components/demos/MarginsGapsDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/margins-gaps.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/margins-gaps.ts?raw";
+
+`padStart` and `padEnd` add leading/trailing margins _inside_ the scale —
+`getRange()` includes them, so the SVG width is always just
+`scale.getRange()`. The colored anatomy below shows every zone at a glance.
+
+Use the knobs to see how `getRange()` updates live as you change
+`gap`, `padStart`, and `padEnd`.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<MarginsGapsDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

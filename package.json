@@ -1,0 +1,17 @@
+{
+  "name": "visual-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "docs:dev": "pnpm --filter visual-toolkit-docs dev",
+    "docs:build": "pnpm --filter visual-toolkit-docs build",
+    "docs:preview": "pnpm --filter visual-toolkit-docs preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

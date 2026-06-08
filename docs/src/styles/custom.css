@@ -1,0 +1,133 @@
+/* ---- Demo card ----
+   Demos render onto a fixed light "canvas" regardless of site theme, because
+   the SVG examples use explicit light-palette fills and dark text. */
+.demo-card {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1rem 0 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.demo-card-header {
+  padding: 0.45rem 1rem;
+  background: var(--sl-color-accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  /* no text-transform — preserve camelCase / kebab-case names */
+}
+
+.demo-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: #ffffff;
+  color: #212529;
+}
+
+/* ---- Controls (knobs) ---- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.control-row label {
+  white-space: nowrap;
+  font-weight: 500;
+  min-width: 9ch;
+}
+
+.control-row input[type="range"] {
+  width: 110px;
+  cursor: pointer;
+  accent-color: var(--sl-color-accent);
+}
+
+.control-row .value-display {
+  font-family: var(--__sl-font-mono, monospace);
+  font-size: 0.75rem;
+  color: #212529;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.control-row button {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--sl-color-accent);
+  border-radius: 4px;
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.control-row button:hover {
+  background: var(--sl-color-accent);
+  color: #fff;
+}
+
+/* ---- SVG canvas ---- */
+.svg-canvas {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+.svg-canvas svg {
+  flex-shrink: 0;
+}
+
+.demo-card-body svg text {
+  font-family: var(--sl-font-system, system-ui, sans-serif);
+}
+
+/* ---- Fit demo: two side-by-side containers ---- */
+.fit-containers {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.fit-container-wrap {
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+}
+
+.fit-container-wrap:first-child {
+  flex: 3;
+}
+
+.fit-container-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 0.4rem;
+  font-family: var(--__sl-font-mono, monospace);
+}
+
+/* ---- Full demo source (collapsed tier) ---- */
+details.full-source > summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-2);
+  user-select: none;
+  margin: 1rem 0 0.5rem;
+}

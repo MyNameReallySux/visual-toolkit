@@ -1,0 +1,26 @@
+---
+title: svg-helpers
+description: Spread geometry onto SVG element attributes without a d3 dependency.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import SvgHelpersDemo from "../../../components/demos/SvgHelpersDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/svg-helpers.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/svg-helpers.ts?raw";
+
+Utility functions that spread geometry onto SVG element attributes without
+requiring a d3 dependency. `applyRectangleAsProps` encodes x/y as a
+CSS `translate()` transform and returns width/height as numbers.
+`estimateSvgTextSize` gives a character-count pixel estimate for
+text layout decisions (grey annotations below).
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Use the fontSize slider to see how `estimateSvgTextSize` tracks the rendered width estimate.
+
+<SvgHelpersDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

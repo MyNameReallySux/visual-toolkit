@@ -1,0 +1,58 @@
+<div class="demo-card">
+  <div class="demo-card-header">makeFixedBandScale</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="fixed-band"></div>
+    <div class="svg-canvas" data-demo="fixed-band"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import {
+    renderFixedBandScale,
+    type FixedBandState,
+  } from "../../demo-lib/examples/fixed-band-scale";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="fixed-band"]'
+  );
+  const mount = document.querySelector<HTMLElement>('[data-demo="fixed-band"]');
+
+  if (controls && mount) {
+    const state: FixedBandState = { count: 7, bandwidth: 50, gap: 8 };
+    const rerender = () => renderFixedBandScale(mount, state);
+
+    makeSlider(controls, {
+      labelText: "items",
+      min: 1,
+      max: 14,
+      initial: state.count,
+      onChange: (v) => {
+        state.count = v;
+        rerender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "bandwidth px",
+      min: 10,
+      max: 100,
+      initial: state.bandwidth,
+      onChange: (v) => {
+        state.bandwidth = v;
+        rerender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "gap px",
+      min: 0,
+      max: 30,
+      initial: state.gap,
+      onChange: (v) => {
+        state.gap = v;
+        rerender();
+      },
+    });
+
+    rerender();
+  }
+</script>

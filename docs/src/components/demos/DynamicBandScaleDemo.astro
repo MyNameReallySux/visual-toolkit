@@ -1,0 +1,37 @@
+<div class="demo-card">
+  <div class="demo-card-header">makeDynamicBandScale — calendar grid</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="dynamic-band-scale"></div>
+    <div class="svg-canvas" data-demo="dynamic-band-scale"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import { renderDynamicBandScale } from "../../demo-lib/examples/dynamic-band-scale";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="dynamic-band-scale"]'
+  );
+  const mount = document.querySelector<HTMLElement>(
+    '[data-demo="dynamic-band-scale"]'
+  );
+
+  if (controls && mount) {
+    let weekendWidth = 20;
+    const rerender = () => renderDynamicBandScale(mount, weekendWidth);
+
+    makeSlider(controls, {
+      labelText: "weekend px",
+      min: 6,
+      max: 52,
+      initial: weekendWidth,
+      onChange: (v) => {
+        weekendWidth = v;
+        rerender();
+      },
+    });
+
+    rerender();
+  }
+</script>

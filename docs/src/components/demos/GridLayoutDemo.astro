@@ -1,0 +1,68 @@
+<div class="demo-card">
+  <div class="demo-card-header">makeGrid — labeled cell grid (3 rows × 3 cols, variable col-1)</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="grid-layout"></div>
+    <div class="svg-canvas" data-demo="grid-layout"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import {
+    renderGridLayout,
+    type GridLayoutState,
+  } from "../../demo-lib/examples/grid-layout";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="grid-layout"]'
+  );
+  const mount = document.querySelector<HTMLElement>('[data-demo="grid-layout"]');
+
+  if (controls && mount) {
+    const state: GridLayoutState = {
+      col1Bandwidth: 120,
+      gap: 6,
+      lastRowEnabled: true,
+    };
+    const rerender = () => renderGridLayout(mount, state);
+
+    makeSlider(controls, {
+      labelText: "col-1 bandwidth px",
+      min: 40,
+      max: 200,
+      initial: state.col1Bandwidth,
+      onChange: (v) => {
+        state.col1Bandwidth = v;
+        rerender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "gap px",
+      min: 0,
+      max: 24,
+      initial: state.gap,
+      onChange: (v) => {
+        state.gap = v;
+        rerender();
+      },
+    });
+
+    // Checkbox for last row enabled
+    const checkRow = document.createElement("div");
+    checkRow.className = "control-row";
+    const checkLbl = document.createElement("label");
+    checkLbl.textContent = "row-2 enabled";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = state.lastRowEnabled;
+    checkbox.addEventListener("change", () => {
+      state.lastRowEnabled = checkbox.checked;
+      rerender();
+    });
+    checkRow.appendChild(checkLbl);
+    checkRow.appendChild(checkbox);
+    controls.appendChild(checkRow);
+
+    rerender();
+  }
+</script>

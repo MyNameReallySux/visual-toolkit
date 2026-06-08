@@ -1,0 +1,31 @@
+---
+title: Grid layout
+description: makeGrid — compose two axis specs into a 2-D grid addressed by key or index.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import GridLayoutDemo from "../../../components/demos/GridLayoutDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/grid-layout.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/grid-layout.ts?raw";
+
+`makeGrid` composes two axis specs (rows + columns) into a 2-D grid.
+Each axis accepts a keys list, an entries list, or a pre-built scale.
+Cells are addressed by literal key (`"row-1"`, `"col-0"`)
+or by the numeric index embedded in the key suffix (`1`, `0`).
+
+`getCellPosition` returns the top-left corner; `getCellRect`
+returns full bounds (supports `rowSpan` / `colSpan`);
+`getContentCellRect` returns the content-inset bounds.
+Use `ExtractKeyFromEnumBandScale` to derive the key type at compile time.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Use the controls to resize col-1, adjust the gap, and toggle the last row.
+The pink dashed outline highlights `getCellRect(1, 1)` — numeric index addressing.
+
+<GridLayoutDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

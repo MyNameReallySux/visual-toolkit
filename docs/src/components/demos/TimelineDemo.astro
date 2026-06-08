@@ -1,0 +1,100 @@
+<div class="demo-card">
+  <div class="demo-card-header">Working hours (overnight skip)</div>
+  <div class="demo-card-body">
+    <p style="font-size:0.85rem;color:#6c757d;margin-bottom:0.75rem">
+      Three working days, 8:00–17:00 each. Overnight gaps (17:00–08:00 next day) are compressed into break markers.
+    </p>
+    <div class="controls" data-demo-controls="timeline-working-hours"></div>
+    <div class="svg-canvas" data-demo="timeline-working-hours"></div>
+  </div>
+</div>
+
+<div class="demo-card">
+  <div class="demo-card-header">Weekdays (weekend skip)</div>
+  <div class="demo-card-body">
+    <p style="font-size:0.85rem;color:#6c757d;margin-bottom:0.75rem">
+      Three calendar weeks, Mon–Fri only. Weekend gaps (Sat–Sun) are compressed into wider break markers.
+    </p>
+    <div class="svg-canvas" data-demo="timeline-weekdays"></div>
+  </div>
+</div>
+
+<div class="demo-card">
+  <div class="demo-card-header">Combined: weekdays × working hours</div>
+  <div class="demo-card-body">
+    <p style="font-size:0.85rem;color:#6c757d;margin-bottom:0.75rem">
+      Thu–Fri (week 1) + Mon–Wed (week 2), 08:00–17:00 each day. Weekend break renders wider than overnight breaks — break-width hierarchy matches skipped span.
+    </p>
+    <div class="svg-canvas" data-demo="timeline-combined"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import {
+    renderDiscontinuousScale,
+    type DiscontinuousKnobs,
+  } from "../../demo-lib/examples/timeline";
+
+  // --- Working hours card (with controls) ---
+  const whControls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="timeline-working-hours"]'
+  );
+  const whMount = document.querySelector<HTMLElement>(
+    '[data-demo="timeline-working-hours"]'
+  );
+
+  if (whControls && whMount) {
+    const knobs: DiscontinuousKnobs = { minToSkip: 12, startHour: 8, endHour: 17 };
+    const rerender = () => renderDiscontinuousScale(whMount, "working-hours", knobs);
+
+    makeSlider(whControls, {
+      labelText: "minToSkip",
+      min: 1,
+      max: 20,
+      initial: knobs.minToSkip ?? 12,
+      onChange: (v) => {
+        knobs.minToSkip = v;
+        rerender();
+      },
+    });
+    makeSlider(whControls, {
+      labelText: "start hour",
+      min: 0,
+      max: 12,
+      initial: knobs.startHour ?? 8,
+      onChange: (v) => {
+        knobs.startHour = v;
+        rerender();
+      },
+    });
+    makeSlider(whControls, {
+      labelText: "end hour",
+      min: 12,
+      max: 23,
+      initial: knobs.endHour ?? 17,
+      onChange: (v) => {
+        knobs.endHour = v;
+        rerender();
+      },
+    });
+
+    rerender();
+  }
+
+  // --- Weekdays card (static) ---
+  const wdMount = document.querySelector<HTMLElement>(
+    '[data-demo="timeline-weekdays"]'
+  );
+  if (wdMount) {
+    renderDiscontinuousScale(wdMount, "weekdays");
+  }
+
+  // --- Combined card (static) ---
+  const combinedMount = document.querySelector<HTMLElement>(
+    '[data-demo="timeline-combined"]'
+  );
+  if (combinedMount) {
+    renderDiscontinuousScale(combinedMount, "combined");
+  }
+</script>

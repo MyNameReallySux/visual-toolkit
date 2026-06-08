@@ -1,0 +1,102 @@
+<div class="demo-card">
+  <div class="demo-card-header">scaleTo — two differently-sized containers</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="transform-fit"></div>
+    <div class="fit-containers" data-demo-fit-row="transform-fit">
+      <div class="fit-container-wrap" data-demo-wrap="transform-fit-a">
+        <div class="fit-container-label">container A</div>
+      </div>
+      <div class="fit-container-wrap" data-demo-wrap="transform-fit-b">
+        <div class="fit-container-label">container B</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import {
+    renderInContainer,
+    type TransformFitOptions,
+  } from "../../demo-lib/examples/transform-fit";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="transform-fit"]'
+  );
+  const fitRow = document.querySelector<HTMLElement>(
+    '[data-demo-fit-row="transform-fit"]'
+  );
+  const wrapA = document.querySelector<HTMLElement>(
+    '[data-demo-wrap="transform-fit-a"]'
+  );
+  const wrapB = document.querySelector<HTMLElement>(
+    '[data-demo-wrap="transform-fit-b"]'
+  );
+
+  if (controls && fitRow && wrapA && wrapB) {
+    const options: TransformFitOptions = { count: 6, bandwidth: 60, gap: 16 };
+    // splitFlex: flex-grow of container A (1–4); container B always flex-grow 1
+    let splitFlex = 3;
+    const GAP_PX = 20; // matches CSS gap: 1.25rem at 16px base
+
+    function doRender(): void {
+      const totalW = fitRow!.clientWidth;
+      if (totalW < 80) return;
+      const totalFlex = splitFlex + 1;
+      const widthA = Math.round((totalW - GAP_PX) * (splitFlex / totalFlex));
+      const widthB = Math.round((totalW - GAP_PX) * (1 / totalFlex));
+      if (widthA < 40 || widthB < 40) return;
+
+      // Keep the CSS flex ratio in sync so labels line up correctly
+      wrapA!.style.flexGrow = String(splitFlex);
+      wrapB!.style.flexGrow = "1";
+
+      renderInContainer(wrapA!, widthA, options, `A (${widthA}px)`);
+      renderInContainer(wrapB!, widthB, options, `B (${widthB}px)`);
+    }
+
+    makeSlider(controls, {
+      labelText: "items",
+      min: 3,
+      max: 12,
+      initial: options.count,
+      onChange: (v) => {
+        options.count = v;
+        doRender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "bandwidth px",
+      min: 20,
+      max: 120,
+      initial: options.bandwidth,
+      onChange: (v) => {
+        options.bandwidth = v;
+        doRender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "gap px",
+      min: 0,
+      max: 40,
+      initial: options.gap,
+      onChange: (v) => {
+        options.gap = v;
+        doRender();
+      },
+    });
+    makeSlider(controls, {
+      labelText: "A flex (1–4)",
+      min: 1,
+      max: 4,
+      initial: splitFlex,
+      onChange: (v) => {
+        splitFlex = v;
+        doRender();
+      },
+    });
+
+    // Double rAF: first lets DOM attach + flex settle, second measures widths.
+    requestAnimationFrame(() => requestAnimationFrame(doRender));
+  }
+</script>

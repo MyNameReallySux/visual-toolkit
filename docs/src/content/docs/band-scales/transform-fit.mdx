@@ -1,0 +1,27 @@
+---
+title: Transform & fit-to-length
+description: Pass scaleTo when building the scale and every bandwidth, gap, and position scales uniformly to fill the container.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import TransformFitDemo from "../../../components/demos/TransformFitDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/transform-fit.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/transform-fit.ts?raw";
+
+Pass `scaleTo: containerWidth` when building the scale and every bandwidth,
+gap, and position is multiplied by a single uniform factor
+(`containerWidth / naturalRange`) at construction time.
+The visual fills its container exactly — widths and gaps scale together so proportions are preserved.
+Read the factor back with `getScaleFactor()`.
+
+The two containers below share the same scale parameters but receive different pixel widths
+via the split slider. Drag any control to watch both containers re-fit live.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<TransformFitDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

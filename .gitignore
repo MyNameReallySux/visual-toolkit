@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+coverage/
+
+# Astro / Starlight docs
+docs/.astro/
+docs/src/content/docs/api/

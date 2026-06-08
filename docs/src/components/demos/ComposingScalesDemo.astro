@@ -1,0 +1,16 @@
+<div class="demo-card">
+  <div class="demo-card-header">composing — grid + enum scales</div>
+  <div class="demo-card-body">
+    <div class="svg-canvas" data-demo="composing-scales"></div>
+  </div>
+</div>
+
+<script>
+  import { renderComposingScales } from "../../demo-lib/examples/composing-scales";
+
+  for (const mount of document.querySelectorAll<HTMLElement>(
+    '[data-demo="composing-scales"]'
+  )) {
+    renderComposingScales(mount);
+  }
+</script>

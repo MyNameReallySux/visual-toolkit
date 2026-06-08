@@ -1,0 +1,16 @@
+<div class="demo-card">
+  <div class="demo-card-header">comparison — d3.scaleBand vs makeFixedBandScale</div>
+  <div class="demo-card-body">
+    <div class="svg-canvas" data-demo="band-scales-intro"></div>
+  </div>
+</div>
+
+<script>
+  import { renderBandScalesIntro } from "../../demo-lib/examples/band-scales-intro";
+
+  for (const mount of document.querySelectorAll<HTMLElement>(
+    '[data-demo="band-scales-intro"]'
+  )) {
+    renderBandScalesIntro(mount);
+  }
+</script>

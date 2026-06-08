@@ -1,0 +1,27 @@
+---
+title: css-number utilities
+description: Parse CSS-unit strings — "24px", "1.5rem", "2em" — in scale options and your own code.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import CssNumbersDemo from "../../../components/demos/CssNumbersDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/css-numbers.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/css-numbers.ts?raw";
+
+All scale options that accept pixel values also accept CSS-unit strings
+(`"24px"`, `"1.5rem"`, `"2em"`).
+`stripPxFromPixels` and `stripSuffixFromCssNumber`
+are the primitives that power this — export them to use the same parsing
+in your own rendering code.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Type a CSS value in the input below to see `stripSuffixFromCssNumber` parse it live.
+The SVG shows three bands constructed with CSS string options — same pixel positions as raw numbers.
+
+<CssNumbersDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

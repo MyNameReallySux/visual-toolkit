@@ -1,0 +1,31 @@
+{
+  "name": "@visual-toolkit/d3-band-scales",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Typed band-scale factories built on d3-scale — fixed-width and variable-width ordinal bands with gap, transform, and content-offset support",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@visual-toolkit/d3-helpers": "workspace:*",
+    "d3-scale": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/d3-scale": "^4.0.9",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,0 +1,23 @@
+---
+title: selectOrCreate
+description: Get-or-create a child element by CSS class — idempotent render functions.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import SelectOrCreateDemo from "../../../components/demos/SelectOrCreateDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/select-or-create.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/select-or-create.ts?raw";
+
+`selectOrCreate(className, parent, tagName)` returns an existing child
+element by CSS class or creates one if absent — making render functions idempotent.
+Combined with a d3 data-join, re-running the render updates existing elements without
+duplicating them. Click the button to re-render and watch the counter stay stable.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<SelectOrCreateDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

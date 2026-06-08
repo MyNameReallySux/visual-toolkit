@@ -1,0 +1,27 @@
+---
+title: Timeline / skip-range
+description: makeDiscontinuousLinearScale compresses large gaps in a domain so non-adjacent values don't waste visual space.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import TimelineDemo from "../../../components/demos/TimelineDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/timeline.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/timeline.ts?raw";
+
+`makeDiscontinuousLinearScale` compresses large gaps in a domain so
+non-adjacent values don't waste visual space. Axis breaks are marked with a zigzag
+rendered inline on the axis line, centered between adjacent continuous bins.
+Ticks are sourced from continuous bins only — skip-bin indices are excluded so step
+sizes stay uniform within each group.
+
+Three common configurations are shown below: working-hours skip, weekday skip,
+and a combined axis that compresses both overnight gaps and weekends simultaneously.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<TimelineDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

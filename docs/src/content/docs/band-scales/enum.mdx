@@ -1,0 +1,26 @@
+---
+title: Enum variants
+description: makeEnumBandScale and makeFixedEnumBandScale — string-literal keys with optional filtering.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import EnumBandScalesDemo from "../../../components/demos/EnumBandScalesDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/enum-band-scales.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/enum-band-scales.ts?raw";
+
+`makeEnumBandScale` is syntactic sugar over `makeDynamicBandScale` for string-literal keys.
+`makeFixedEnumBandScale` filters disabled entries pre-build: the layout _collapses_ so enabled
+items pack together. Use `doesKeyExist(key)` to guard reads on keys that may be disabled.
+The two rows below show declared keys (reference) vs the collapsed actual layout.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Toggle which items are enabled and adjust the gap to see `makeFixedEnumBandScale`
+collapse the layout in real time.
+
+<EnumBandScalesDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

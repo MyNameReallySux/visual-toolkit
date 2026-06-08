@@ -1,0 +1,68 @@
+<div class="demo-card">
+  <div class="demo-card-header">selectOrCreate — idempotent render</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="select-or-create"></div>
+    <div class="svg-canvas" data-demo="select-or-create"></div>
+  </div>
+</div>
+
+<script>
+  import {
+    renderSelectOrCreate,
+    ALL_CATEGORIES,
+  } from "../../demo-lib/examples/select-or-create";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="select-or-create"]'
+  );
+  const mount = document.querySelector<HTMLElement>(
+    '[data-demo="select-or-create"]'
+  );
+
+  if (controls && mount) {
+    let callCount = 0;
+    let activeCount = ALL_CATEGORIES.length;
+
+    // Create the persistent SVG element
+    const svgEl = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    ) as SVGSVGElement;
+    svgEl.setAttribute("height", "100");
+    svgEl.classList.add("demo-svg");
+    mount.appendChild(svgEl);
+
+    function doRender(): void {
+      callCount++;
+      const cats = ALL_CATEGORIES.slice(0, activeCount);
+      renderSelectOrCreate(svgEl, cats, callCount);
+    }
+
+    // Button row
+    const btnRow = document.createElement("div");
+    btnRow.className = "control-row";
+    const btn = document.createElement("button");
+    btn.textContent = "Re-render (idempotent)";
+    btn.addEventListener("click", doRender);
+    btnRow.appendChild(btn);
+    controls.appendChild(btnRow);
+
+    // Toggle row
+    const toggleRow = document.createElement("div");
+    toggleRow.className = "control-row";
+    const toggleLbl = document.createElement("label");
+    toggleLbl.textContent = "show all";
+    const toggle = document.createElement("input");
+    toggle.type = "checkbox";
+    toggle.checked = true;
+    toggle.addEventListener("change", () => {
+      activeCount = toggle.checked ? ALL_CATEGORIES.length : 3;
+      doRender();
+    });
+    toggleRow.appendChild(toggleLbl);
+    toggleRow.appendChild(toggle);
+    controls.appendChild(toggleRow);
+
+    doRender();
+  }
+</script>

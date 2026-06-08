@@ -1,0 +1,52 @@
+<div class="demo-card">
+  <div class="demo-card-header">stripPxFromPixels / stripSuffixFromCssNumber</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="css-numbers"></div>
+    <div class="svg-canvas" data-demo="css-numbers"></div>
+  </div>
+</div>
+
+<script>
+  import { stripSuffixFromCssNumber } from "@visual-toolkit/d3-helpers";
+  import { renderCssNumbers } from "../../demo-lib/examples/css-numbers";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="css-numbers"]'
+  );
+  const mount = document.querySelector<HTMLElement>('[data-demo="css-numbers"]');
+
+  if (controls && mount) {
+    // Live CSS-value parser input
+    const inputRow = document.createElement("div");
+    inputRow.className = "control-row";
+
+    const inputLbl = document.createElement("label");
+    inputLbl.textContent = "CSS value";
+
+    const textInput = document.createElement("input");
+    textInput.type = "text";
+    textInput.value = "1.5rem";
+    textInput.style.cssText =
+      "width:8rem;padding:2px 6px;border:1px solid #dee2e6;border-radius:4px;font-size:0.85rem";
+
+    const parsedDisplay = document.createElement("span");
+    parsedDisplay.className = "value-display";
+
+    function updateParsed(): void {
+      const raw = textInput.value.trim();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const num = stripSuffixFromCssNumber(raw as any);
+      parsedDisplay.textContent = `→ ${isNaN(num) ? "invalid" : num}`;
+    }
+
+    textInput.addEventListener("input", updateParsed);
+    updateParsed();
+
+    inputRow.appendChild(inputLbl);
+    inputRow.appendChild(textInput);
+    inputRow.appendChild(parsedDisplay);
+    controls.appendChild(inputRow);
+
+    renderCssNumbers(mount);
+  }
+</script>

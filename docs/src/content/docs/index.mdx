@@ -1,0 +1,35 @@
+---
+title: Getting Started
+description: Install visual-toolkit and build your first typed band scale.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import usageSrc from "../../demo-lib/snippets/getting-started.snippet.ts?raw";
+
+`visual-toolkit` is a set of typed scale factories and SVG/D3 utilities built on
+`d3-scale`. The `@visual-toolkit/d3-band-scales` package gives you explicit pixel
+widths per item, configurable gaps, CSS-string options (`"24px"`), and a uniform
+transform/fit API — all typed end-to-end in TypeScript.
+
+## Install
+
+```sh
+npm install @visual-toolkit/d3-band-scales
+npm install @visual-toolkit/d3-discontinuous-scale
+npm install @visual-toolkit/d3-helpers
+# peer deps (only if you also use d3-scale directly)
+npm install d3-scale d3-selection
+```
+
+## Minimal example
+
+Build a scale, ask for positions, size your SVG to fit. Jump to the sections
+below for interactive demos of each feature.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+## Sections in this guide
+
+- [Band Scales](/band-scales/introduction/) — intro, Fixed, Dynamic, Enum, Composing, Transform &amp; fit
+- [Discontinuous Scales](/discontinuous/timeline/) — skip-range timeline
+- [Helpers](/helpers/band-math/) — band-math, svg-helpers, selectOrCreate, css-number utilities

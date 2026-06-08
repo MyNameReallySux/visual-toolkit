@@ -1,0 +1,25 @@
+---
+title: Fixed bands
+description: makeFixedBandScale — every item shares the same pixel width and gap.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import FixedBandDemo from "../../../components/demos/FixedBandDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/fixed-band-scale.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/fixed-band-scale.ts?raw";
+
+Every item shares the same pixel width and gap. Positions are explicit — ask
+the scale where a band starts and ends instead of computing offsets yourself.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Use the controls below to explore how the parameters affect layout.
+`calculateLengthFromFixedBandsWithGaps` derives the total SVG width so it fits
+exactly.
+
+<FixedBandDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

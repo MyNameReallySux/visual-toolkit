@@ -1,0 +1,29 @@
+---
+title: band-math & fit
+description: Low-level numeric primitives — size SVGs to fit, scale layouts to a container.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import BandMathDemo from "../../../components/demos/BandMathDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/band-math.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/band-math.ts?raw";
+
+Low-level numeric primitives used by all scale factories.
+`calculateLengthFromFixedBandsWithGaps` and `calculateLengthFromDynamicBands` size your SVG to fit exactly.
+
+`calculateFitScaleFactor(contentLength, containerLength)` returns `containerLength / contentLength` — the uniform
+factor that makes your content fill the available space. Use it directly, or pass `scaleTo` when constructing the
+scale to get a pre-multiplied scale where all bandwidths, gaps, and positions are already scaled.
+Read the factor back via `getScaleFactor()`.
+
+The demo below shows a four-item fixed scale fitted to fill the selected container width — the pink tick at the
+right edge marks where `getX1("D")` lands.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+<BandMathDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

@@ -1,0 +1,35 @@
+<div class="demo-card">
+  <div class="demo-card-header">scaleTo — content fills container exactly</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="band-math"></div>
+    <div class="svg-canvas" data-demo="band-math"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import { renderBandMath } from "../../demo-lib/examples/band-math";
+
+  const controls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="band-math"]'
+  );
+  const mount = document.querySelector<HTMLElement>('[data-demo="band-math"]');
+
+  if (controls && mount) {
+    let containerWidth = 460;
+    const rerender = () => renderBandMath(mount, containerWidth);
+
+    makeSlider(controls, {
+      labelText: "container width px",
+      min: 200,
+      max: 800,
+      initial: containerWidth,
+      onChange: (v) => {
+        containerWidth = v;
+        rerender();
+      },
+    });
+
+    rerender();
+  }
+</script>

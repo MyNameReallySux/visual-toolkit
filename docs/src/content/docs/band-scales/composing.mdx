@@ -1,0 +1,29 @@
+---
+title: Composing scales
+description: Nest enum scales inside grid columns — alignment by construction.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import ComposingScalesDemo from "../../../components/demos/ComposingScalesDemo.astro";
+import usageSrc from "../../../demo-lib/snippets/composing-scales.snippet.ts?raw";
+import exampleSrc from "../../../demo-lib/examples/composing-scales.ts?raw";
+
+Multiple scales compose cleanly: shared rows come from a fixed band scale,
+outer groups are grid columns with per-group widths, and each group nests its
+own `makeEnumBandScale` for inner sections. Deriving every outer width from the
+inner scale's `getRange()` means headers and columns can never drift apart —
+the alignment holds by construction, not by hand-tuned constants.
+
+<Code code={usageSrc} lang="ts" title="Usage" />
+
+Each group below independently controls its column widths while the row
+positions are shared across all groups.
+`calculateLengthFromFixedBandsWithGaps` derives the SVG height so nothing is
+clipped.
+
+<ComposingScalesDemo />
+
+<details class="full-source">
+  <summary>Full demo source</summary>
+  <Code code={exampleSrc} lang="ts" />
+</details>

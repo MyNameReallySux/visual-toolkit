@@ -1,0 +1,157 @@
+<div class="demo-card">
+  <div class="demo-card-header">makeFixedBandScale — padStart / gap / padEnd anatomy</div>
+  <div class="demo-card-body">
+    <div class="controls" data-demo-controls="margins-gaps-anatomy"></div>
+    <div class="svg-canvas" data-demo="margins-gaps-anatomy"></div>
+  </div>
+</div>
+
+<div class="demo-card">
+  <div class="demo-card-header">makeEnumBandScale — uniform content offsets (X / Y / Z)</div>
+  <div class="demo-card-body">
+    <p style="font-size:0.85rem;color:var(--sl-color-gray-3);margin-bottom:0.75rem">
+      All three bands share the same <code>contentOffsetStart</code> and
+      <code>contentOffsetEnd</code>. Dashed lines mark <code>getContentX0</code> and
+      <code>getContentX1</code>. The header shows <code>getContentBandwidth()</code> live.
+    </p>
+    <div class="controls" data-demo-controls="margins-gaps-uniform"></div>
+    <div class="svg-canvas" data-demo="margins-gaps-uniform"></div>
+  </div>
+</div>
+
+<div class="demo-card">
+  <div class="demo-card-header">makeEnumBandScale — per-item offsets (first item only)</div>
+  <div class="demo-card-body">
+    <p style="font-size:0.85rem;color:var(--sl-color-gray-3);margin-bottom:0.75rem">
+      Band <strong>X</strong> (first item) receives its own
+      <code>contentOffsetStart</code> and <code>contentOffsetEnd</code> via a per-entry
+      <code>EnumLayoutEntry</code> override — useful for reserving a leading icon gutter
+      in the first band only. Y and Z follow the global pair.
+    </p>
+    <div class="controls" data-demo-controls="margins-gaps-peritem"></div>
+    <div class="svg-canvas" data-demo="margins-gaps-peritem"></div>
+  </div>
+</div>
+
+<script>
+  import { makeSlider } from "../../demo-lib/section-helpers";
+  import {
+    renderMarginsGaps,
+    renderUniformContentInsets,
+    renderPerItemContentInsets,
+    type MarginsGapsState,
+    type ContentInsetsState,
+    type PerItemInsetsState,
+  } from "../../demo-lib/examples/margins-gaps";
+
+  // ---- Card 1: anatomy ----
+  const anatomyControls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="margins-gaps-anatomy"]'
+  );
+  const anatomyMount = document.querySelector<HTMLElement>(
+    '[data-demo="margins-gaps-anatomy"]'
+  );
+
+  if (anatomyControls && anatomyMount) {
+    const state: MarginsGapsState = { gap: 8, padStart: 24, padEnd: 16 };
+    const rerender = () => renderMarginsGaps(anatomyMount, state);
+
+    makeSlider(anatomyControls, {
+      labelText: "gap px",
+      min: 0,
+      max: 32,
+      initial: state.gap,
+      onChange: (v) => { state.gap = v; rerender(); },
+    });
+    makeSlider(anatomyControls, {
+      labelText: "padStart px",
+      min: 0,
+      max: 60,
+      initial: state.padStart,
+      onChange: (v) => { state.padStart = v; rerender(); },
+    });
+    makeSlider(anatomyControls, {
+      labelText: "padEnd px",
+      min: 0,
+      max: 60,
+      initial: state.padEnd,
+      onChange: (v) => { state.padEnd = v; rerender(); },
+    });
+
+    rerender();
+  }
+
+  // ---- Card 2: uniform content insets ----
+  const uniformControls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="margins-gaps-uniform"]'
+  );
+  const uniformMount = document.querySelector<HTMLElement>(
+    '[data-demo="margins-gaps-uniform"]'
+  );
+
+  if (uniformControls && uniformMount) {
+    const insetsState: ContentInsetsState = { offsetStart: 16, offsetEnd: 12 };
+    const rerenderUniform = () => renderUniformContentInsets(uniformMount, insetsState);
+
+    makeSlider(uniformControls, {
+      labelText: "offsetStart px",
+      min: 0,
+      max: 36,
+      initial: insetsState.offsetStart,
+      onChange: (v) => { insetsState.offsetStart = v; rerenderUniform(); },
+    });
+    makeSlider(uniformControls, {
+      labelText: "offsetEnd px",
+      min: 0,
+      max: 36,
+      initial: insetsState.offsetEnd,
+      onChange: (v) => { insetsState.offsetEnd = v; rerenderUniform(); },
+    });
+
+    rerenderUniform();
+  }
+
+  // ---- Card 3: per-item insets ----
+  const perItemControls = document.querySelector<HTMLElement>(
+    '[data-demo-controls="margins-gaps-peritem"]'
+  );
+  const perItemMount = document.querySelector<HTMLElement>(
+    '[data-demo="margins-gaps-peritem"]'
+  );
+
+  if (perItemControls && perItemMount) {
+    const perItemState: PerItemInsetsState = { xOffsetStart: 24, xOffsetEnd: 8, offsetStart: 8, offsetEnd: 8 };
+    const rerenderPerItem = () => renderPerItemContentInsets(perItemMount, perItemState);
+
+    makeSlider(perItemControls, {
+      labelText: "X offsetStart px",
+      min: 0,
+      max: 40,
+      initial: perItemState.xOffsetStart,
+      onChange: (v) => { perItemState.xOffsetStart = v; rerenderPerItem(); },
+    });
+    makeSlider(perItemControls, {
+      labelText: "X offsetEnd px",
+      min: 0,
+      max: 40,
+      initial: perItemState.xOffsetEnd,
+      onChange: (v) => { perItemState.xOffsetEnd = v; rerenderPerItem(); },
+    });
+    makeSlider(perItemControls, {
+      labelText: "global offsetStart px",
+      min: 0,
+      max: 36,
+      initial: perItemState.offsetStart,
+      onChange: (v) => { perItemState.offsetStart = v; rerenderPerItem(); },
+    });
+    makeSlider(perItemControls, {
+      labelText: "global offsetEnd px",
+      min: 0,
+      max: 36,
+      initial: perItemState.offsetEnd,
+      onChange: (v) => { perItemState.offsetEnd = v; rerenderPerItem(); },
+    });
+
+    rerenderPerItem();
+  }
+</script>
