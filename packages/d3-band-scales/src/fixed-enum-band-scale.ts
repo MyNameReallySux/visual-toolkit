@@ -29,7 +29,7 @@ export type FixedEnumBandScaleOptions<Key extends string> = Omit<
  */
 export function makeFixedEnumBandScale<Key extends string>(
   items: FixedEnumLayoutEntry<Key>[],
-  options: Optional<FixedEnumBandScaleOptions<Key>> = { bandwidth: 0 }
+  options: Optional<FixedEnumBandScaleOptions<Key>> = { bandwidth: 0 },
 ): FixedEnumBandScale<Key> {
   const enabledItems = items.filter((item) => item.isEnabled !== false);
 

@@ -25,7 +25,7 @@ describe("ExtractKeyFromFixedEnumBandScale", () => {
   it("extracts the literal Key union", () => {
     const scale = makeFixedEnumBandScale(
       [{ key: "row-0" }, { key: "row-1" }],
-      { bandwidth: 40 }
+      { bandwidth: 40 },
     );
     type K = ExtractKeyFromFixedEnumBandScale<typeof scale>;
     expectTypeOf<K>().toEqualTypeOf<"row-0" | "row-1">();
@@ -64,7 +64,7 @@ describe("ExtractIndexesFromFixedEnumBandScale", () => {
   it("extracts numeric index union from fixed-enum scale", () => {
     const scale = makeFixedEnumBandScale(
       [{ key: "row-0" }, { key: "row-1" }, { key: "row-2" }],
-      { bandwidth: 40 }
+      { bandwidth: 40 },
     );
     type Idx = ExtractIndexesFromFixedEnumBandScale<typeof scale>;
     expectTypeOf<Idx>().toEqualTypeOf<0 | 1 | 2>();
@@ -215,7 +215,7 @@ describe("makeGrid — keys×entries (fixed×dynamic)", () => {
 describe("makeGrid — prebuilt scale pass-through", () => {
   const rowScale = makeFixedEnumBandScale(
     [{ key: "row-0" }, { key: "row-1" }],
-    { bandwidth: 40, gap: 4 }
+    { bandwidth: 40, gap: 4 },
   );
   const colScale = makeEnumBandScale([
     { key: "col-0", bandwidth: 80 },
@@ -327,9 +327,9 @@ describe("makeGrid — getContentCellRect", () => {
 
   it("getContentCellRect returns content-inset rect", () => {
     const rect = grid.getContentCellRect("row-0", "col-0");
-    expect(rect.x).toBeCloseTo(8);   // contentX0 of col-0
-    expect(rect.y).toBeCloseTo(5);   // contentX0 of row-0
-    expect(rect.width).toBeCloseTo(68);  // contentX1=80−4=76, wait: x1=80−4=76, x0=8 → width=68
+    expect(rect.x).toBeCloseTo(8); // contentX0 of col-0
+    expect(rect.y).toBeCloseTo(5); // contentX0 of row-0
+    expect(rect.width).toBeCloseTo(68); // contentX1=80−4=76, wait: x1=80−4=76, x0=8 → width=68
     expect(rect.height).toBeCloseTo(40); // 50 − 5 − 5 = 40
   });
 

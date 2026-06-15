@@ -75,7 +75,7 @@ describe("makeEnumBandScale — per-entry contentOffsetStart + contentOffsetEnd"
   ], { gap: 10, contentOffsetStart: 5, contentOffsetEnd: 5 });
 
   it("a uses global start and end", () => {
-    expect(scale.getContentX0("a")).toBe(5);  // x0=0 + 5
+    expect(scale.getContentX0("a")).toBe(5); // x0=0 + 5
     expect(scale.getContentX1("a")).toBe(95); // x1=100 − 5
     expect(scale.getContentBandwidth("a")).toBe(90);
   });
@@ -102,7 +102,7 @@ describe("makeFixedEnumBandScale", () => {
       { key: "row-1", isEnabled: false }, // filtered out
       { key: "row-2" },
     ],
-    { bandwidth: 40, gap: 5 }
+    { bandwidth: 40, gap: 5 },
   );
 
   it("doesKeyExist returns true for enabled keys", () => {
@@ -134,7 +134,7 @@ describe("makeFixedEnumBandScale", () => {
 describe("makeFixedEnumBandScale — global contentOffset passthrough", () => {
   const scale = makeFixedEnumBandScale(
     [{ key: "row-0" }, { key: "row-1" }],
-    { bandwidth: 60, gap: 8, contentOffsetStart: 10, contentOffsetEnd: 6 }
+    { bandwidth: 60, gap: 8, contentOffsetStart: 10, contentOffsetEnd: 6 },
   );
 
   it("getContentX0 = x0 + start", () => {

@@ -13,7 +13,7 @@ export function selectOrCreate<
 >(
   className: string,
   parent: Selection<BaseType, PDatum, BaseType, unknown>,
-  tagName: string
+  tagName: string,
 ): Selection<Elem, PDatum, BaseType, unknown> {
   let $el = parent.select<Elem>(`.${className}`);
   if ($el.empty()) {

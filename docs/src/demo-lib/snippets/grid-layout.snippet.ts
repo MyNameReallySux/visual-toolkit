@@ -18,6 +18,6 @@ const grid = makeGrid({
 
 // Cells are addressable by literal key or by numeric index — same result.
 grid.getCellRect("row-1", "col-1"); // → { x: 86, y: 46, width: 120, height: 40 }
-grid.getCellRect(1, 1);             // → { x: 86, y: 46, width: 120, height: 40 }
-grid.colScale.getRange();           // → 292
-grid.rowScale.getRange();           // → 132
+grid.getCellRect(1, 1); // → { x: 86, y: 46, width: 120, height: 40 }
+grid.colScale.getRange(); // → 292
+grid.rowScale.getRange(); // → 132

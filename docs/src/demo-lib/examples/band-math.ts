@@ -42,7 +42,7 @@ export function renderBandMath(mount: HTMLElement, containerWidth: number = 460)
     `native: ${nativeRange}px  →  k = ${k.toFixed(2)}  →  fitted: ${containerWidth}px`,
     0,
     12,
-    { anchor: "start", size: 9, weight: 700, color: ANNOTATION_COLOR }
+    { anchor: "start", size: 9, weight: 700, color: ANNOTATION_COLOR },
   );
 
   // Draw each fitted band
@@ -72,6 +72,6 @@ export function renderBandMath(mount: HTMLElement, containerWidth: number = 460)
     `x1("D") = ${containerWidth}`,
     containerWidth - 2,
     TOP_Y + ROW_H + 16,
-    { anchor: "end", size: 8, color: EDGE_COLOR }
+    { anchor: "end", size: 8, color: EDGE_COLOR },
   );
 }

@@ -47,7 +47,7 @@ const GROUP_LABEL_COLOR = "#4361ee";
 /** 10 hours per day (startH–endH) for 3 sequential days. */
 function buildWorkingHoursValues(
   startH: number,
-  endH: number
+  endH: number,
 ): number[] {
   const hours: number[] = [];
   for (let d = 0; d < 3; d++) {
@@ -103,7 +103,7 @@ function appendZigzag(svg: SVGSVGElement, xCenter: number, gapW: number): void {
       width: hw * 2,
       height: amp * 2 + 2,
     },
-    { fill: "#ffffff" }
+    { fill: "#ffffff" },
   );
 
   const points: string[] = [];
@@ -134,7 +134,7 @@ export type DiscontinuousKnobs = {
 export function renderDiscontinuousScale(
   mount: HTMLElement,
   mode: DiscontinuousMode,
-  knobs?: DiscontinuousKnobs
+  knobs?: DiscontinuousKnobs,
 ): void {
   let values: number[];
   let minToSkip: number;
@@ -221,13 +221,13 @@ export function renderDiscontinuousScale(
         width: Math.abs(xLast - xFirst),
         height: AXIS_Y + 14,
       },
-      { fill: "#e8ecfd", fillOpacity: 0.45 }
+      { fill: "#e8ecfd", fillOpacity: 0.45 },
     );
   });
 
   // Axis line
-  const xEnd =
-    continuousBinBounds.length > 0
+  const xEnd
+    = continuousBinBounds.length > 0
       ? continuousBinBounds[continuousBinBounds.length - 1].xLast
       : PAD_LEFT + CONTENT_W;
 
@@ -242,9 +242,9 @@ export function renderDiscontinuousScale(
     if (i % 2 !== 1) return;
     const prevBin = continuousBinBounds[skipBinIndex];
     const nextBin = continuousBinBounds[skipBinIndex + 1];
-    const gapW =
-      scale.getSkipWidth(skipBinIndex) ??
-      (nextBin ? nextBin.xFirst - prevBin.xLast : 0);
+    const gapW
+      = scale.getSkipWidth(skipBinIndex)
+        ?? (nextBin ? nextBin.xFirst - prevBin.xLast : 0);
     skipBinIndex++;
     if (!prevBin || !nextBin) return;
     const xCenter = (prevBin.xLast + nextBin.xFirst) / 2;
@@ -258,7 +258,7 @@ export function renderDiscontinuousScale(
       groupLabeler(i, xFirst, xLast),
       (xFirst + xLast) / 2,
       14,
-      { size: 10, weight: 700, color: GROUP_LABEL_COLOR }
+      { size: 10, weight: 700, color: GROUP_LABEL_COLOR },
     );
   });
 

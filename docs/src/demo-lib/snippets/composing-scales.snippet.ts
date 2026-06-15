@@ -6,7 +6,7 @@ const inner = makeEnumBandScale(
     { key: "s0", bandwidth: 48 },
     { key: "s1", bandwidth: 72 },
   ],
-  { gap: 4 }
+  { gap: 4 },
 );
 
 // Outer grid: size the group's column from the inner scale's range,

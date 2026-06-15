@@ -157,7 +157,7 @@ export function renderMarginsGaps(mount: HTMLElement, state: MarginsGapsState): 
 /** Render uniform content offsets: X/Y/Z all share the same global offsets. */
 export function renderUniformContentInsets(
   mount: HTMLElement,
-  state: ContentInsetsState
+  state: ContentInsetsState,
 ): void {
   const { offsetStart, offsetEnd } = state;
 
@@ -181,8 +181,8 @@ export function renderUniformContentInsets(
     { color: COLOR_INSET_END, label: "contentOffsetEnd (getContentX1)" },
     { color: COLOR_BAND, label: "content area" },
   ];
-  const legendMinW =
-    legendItems2.reduce((acc, li) => acc + li.label.length * 4.5 + 16 + 8 + 4, 4);
+  const legendMinW
+    = legendItems2.reduce((acc, li) => acc + li.label.length * 4.5 + 16 + 8 + 4, 4);
 
   const svgW = Math.max(scale.getRange() + PAD, legendMinW);
   const svgH = 84;
@@ -253,7 +253,7 @@ export function renderUniformContentInsets(
     `offsetStart=${offsetStart}px  offsetEnd=${offsetEnd}px  getContentBandwidth("X")=${cbw}px`,
     svgW / 2,
     14,
-    { size: 9, weight: 600, color: ANNOTATION_COLOR }
+    { size: 9, weight: 600, color: ANNOTATION_COLOR },
   );
 
   // Legend (uses legendItems2 computed above for svgW)
@@ -276,7 +276,7 @@ export function renderUniformContentInsets(
  */
 export function renderPerItemContentInsets(
   mount: HTMLElement,
-  state: PerItemInsetsState
+  state: PerItemInsetsState,
 ): void {
   const { xOffsetStart, xOffsetEnd, offsetStart, offsetEnd } = state;
 
@@ -367,7 +367,7 @@ export function renderPerItemContentInsets(
     `X: start=${xOffsetStart} end=${xOffsetEnd}  Y/Z global: start=${offsetStart} end=${offsetEnd}`,
     svgW / 2,
     14,
-    { size: 9, weight: 600, color: ANNOTATION_COLOR }
+    { size: 9, weight: 600, color: ANNOTATION_COLOR },
   );
 
   // Legend

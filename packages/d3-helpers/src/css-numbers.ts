@@ -28,7 +28,7 @@ export function stripPxFromPixels(value: PixelOrNumber): number {
  * Like `stripPxFromPixels` but returns `undefined` when the value is absent.
  */
 export function stripPxFromPixelsIfExists(
-  value: Optional<PixelOrNumber>
+  value: Optional<PixelOrNumber>,
 ): Optional<number> {
   if (value === undefined) return undefined;
   return stripPxFromPixels(value);
@@ -41,7 +41,7 @@ export function stripPxFromPixelsIfExists(
  * Warns and returns `0` when the string cannot be parsed as a number.
  */
 export function stripSuffixFromCssNumber<T extends AnyCssNumber>(
-  value: T
+  value: T,
 ): number {
   if (typeof value === "string") {
     const n = parseFloat(value.replace(/(px|rem|em)$/, ""));

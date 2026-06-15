@@ -32,7 +32,7 @@ export function renderSvgHelpers(mount: HTMLElement, fontSize: number = DEFAULT_
     "applyRectangleAsProps → each <g> uses translate(x, y) + width/height attrs",
     16,
     14,
-    { anchor: "start", size: 9, weight: 600 }
+    { anchor: "start", size: 9, weight: 600 },
   );
 
   ITEMS.forEach((label, i) => {

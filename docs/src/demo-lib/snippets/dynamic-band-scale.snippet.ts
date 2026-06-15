@@ -16,4 +16,4 @@ scale.getX0("d0"); // → 0  (first weekday)
 scale.getX1("d0"); // → 52
 scale.getX0("d5"); // → 290  (first weekend, narrower)
 scale.getX1("d5"); // → 310
-scale.getRange();  // → 678
+scale.getRange(); // → 678

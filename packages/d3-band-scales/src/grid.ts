@@ -30,7 +30,7 @@ export type KeysAxisSpec<K extends string> = {
   padEnd?: Optional<AnyCssNumber>;
   contentOffsetStart?: Optional<AnyCssNumber>;
   contentOffsetEnd?: Optional<AnyCssNumber>;
-  scaleTo?: 'content' | AnyCssNumber;
+  scaleTo?: "content" | AnyCssNumber;
   /** Keys to exclude from the scale (sets `isEnabled: false` for matching entries). */
   disabledKeys?: readonly K[];
 };
@@ -43,22 +43,22 @@ export type EntriesAxisSpec<K extends string> = {
   padEnd?: Optional<AnyCssNumber>;
   contentOffsetStart?: Optional<AnyCssNumber>;
   contentOffsetEnd?: Optional<AnyCssNumber>;
-  scaleTo?: 'content' | AnyCssNumber;
+  scaleTo?: "content" | AnyCssNumber;
 };
 
 /**
  * AxisSpec variant: pass a pre-built enum or fixed-enum band scale directly
  * (escape hatch — detected by the presence of a `getX0` function).
  */
-export type PrebuiltAxisSpec<K extends string> =
-  | EnumBandScale<K>
-  | FixedEnumBandScale<K>;
+export type PrebuiltAxisSpec<K extends string>
+  = | EnumBandScale<K>
+    | FixedEnumBandScale<K>;
 
 /** Union of all axis specification forms accepted by `makeGrid`. */
-export type AxisSpec<K extends string> =
-  | KeysAxisSpec<K>
-  | EntriesAxisSpec<K>
-  | PrebuiltAxisSpec<K>;
+export type AxisSpec<K extends string>
+  = | KeysAxisSpec<K>
+    | EntriesAxisSpec<K>
+    | PrebuiltAxisSpec<K>;
 
 type ResolvedAxis<K extends string> = {
   /** Ordered domain keys. */
@@ -128,7 +128,7 @@ function buildIndexMap<K extends string>(domain: K[]): Map<number, K> {
 /** Resolve an address (key or numeric index) to the domain key. */
 function resolveKey<K extends string>(
   addr: K | number,
-  indexMap: Map<number, K>
+  indexMap: Map<number, K>,
 ): K {
   if (typeof addr === "number") {
     return indexMap.get(addr) as K;
@@ -138,7 +138,7 @@ function resolveKey<K extends string>(
 
 /** Build a ResolvedAxis from a prebuilt scale. */
 function resolvePrebuilt<K extends string>(
-  scale: EnumBandScale<K> | FixedEnumBandScale<K>
+  scale: EnumBandScale<K> | FixedEnumBandScale<K>,
 ): ResolvedAxis<K> {
   const domain = scale.getDomain() as K[];
   return {
@@ -153,21 +153,21 @@ function resolvePrebuilt<K extends string>(
 
 /** Determine whether a spec is a pre-built scale (duck-type check). */
 function isPrebuilt<K extends string>(
-  spec: AxisSpec<K>
+  spec: AxisSpec<K>,
 ): spec is PrebuiltAxisSpec<K> {
-  return typeof (spec as any).getX0 === "function";
+  return "getX0" in spec && typeof spec.getX0 === "function";
 }
 
 /** Determine whether a spec is the `keys` form. */
 function isKeysSpec<K extends string>(
-  spec: AxisSpec<K>
+  spec: AxisSpec<K>,
 ): spec is KeysAxisSpec<K> {
   return "keys" in spec;
 }
 
 /** Determine whether a spec is the `entries` form. */
 function isEntriesSpec<K extends string>(
-  spec: AxisSpec<K>
+  spec: AxisSpec<K>,
 ): spec is EntriesAxisSpec<K> {
   return "entries" in spec;
 }
@@ -235,7 +235,7 @@ function resolveEntriesSpec<K extends string>(spec: EntriesAxisSpec<K>): {
 function resolveSpanEndKey<K extends string>(
   startKey: K,
   spanCount: number,
-  domain: K[]
+  domain: K[],
 ): K {
   if (spanCount <= 1) return startKey;
   const startIdx = domain.indexOf(startKey);
@@ -307,7 +307,7 @@ export function makeGrid<RowKey extends string, ColKey extends string>(options: 
 
   function getCellPosition(
     row: RowKey | ExtractIndexFromKey<RowKey>,
-    col: ColKey | ExtractIndexFromKey<ColKey>
+    col: ColKey | ExtractIndexFromKey<ColKey>,
   ): CellPosition {
     const rKey = resolveKey(row as RowKey | number, rowAxis.indexMap);
     const cKey = resolveKey(col as ColKey | number, colAxis.indexMap);
@@ -319,7 +319,7 @@ export function makeGrid<RowKey extends string, ColKey extends string>(options: 
   function getCellRect(
     row: RowKey | ExtractIndexFromKey<RowKey>,
     col: ColKey | ExtractIndexFromKey<ColKey>,
-    span?: SpanOptions
+    span?: SpanOptions,
   ): CellRect {
     const rKey = resolveKey(row as RowKey | number, rowAxis.indexMap);
     const cKey = resolveKey(col as ColKey | number, colAxis.indexMap);
@@ -340,7 +340,7 @@ export function makeGrid<RowKey extends string, ColKey extends string>(options: 
 
   function getContentCellRect(
     row: RowKey | ExtractIndexFromKey<RowKey>,
-    col: ColKey | ExtractIndexFromKey<ColKey>
+    col: ColKey | ExtractIndexFromKey<ColKey>,
   ): CellRect {
     const rKey = resolveKey(row as RowKey | number, rowAxis.indexMap);
     const cKey = resolveKey(col as ColKey | number, colAxis.indexMap);

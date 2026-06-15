@@ -80,7 +80,7 @@ export function renderGridLayout(mount: HTMLElement, state: GridLayoutState): vo
           ci === 1 ? `[${ri},1]` : `${rk}/${ck}`,
           rect.x + rect.width / 2,
           rect.y + rect.height / 2 + 4,
-          { size: 9, weight: 600, color: fg }
+          { size: 9, weight: 600, color: fg },
         );
       }
     });
@@ -107,6 +107,6 @@ export function renderGridLayout(mount: HTMLElement, state: GridLayoutState): vo
     `getCellRect(1,1) → {x:${highlight.x.toFixed(0)}, y:${highlight.y.toFixed(0)}, w:${highlight.width.toFixed(0)}, h:${highlight.height.toFixed(0)}}`,
     highlight.x + highlight.width / 2,
     infoY > totalH - 8 ? totalH - 4 : infoY,
-    { size: 8, color: HIGHLIGHT_STROKE }
+    { size: 8, color: HIGHLIGHT_STROKE },
   );
 }

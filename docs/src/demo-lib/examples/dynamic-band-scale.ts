@@ -8,10 +8,10 @@ type Day = { id: string; label: string; isWeekend: boolean };
 type Category = { id: string; label: string };
 
 const CATEGORIES: Category[] = [
-  { id: "Alpha",   label: "Alpha"   },
-  { id: "Beta",    label: "Beta"    },
-  { id: "Gamma",   label: "Gamma"   },
-  { id: "Delta",   label: "Delta"   },
+  { id: "Alpha", label: "Alpha" },
+  { id: "Beta", label: "Beta" },
+  { id: "Gamma", label: "Gamma" },
+  { id: "Delta", label: "Delta" },
   { id: "Epsilon", label: "Epsilon" },
 ];
 

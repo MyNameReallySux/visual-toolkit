@@ -3,7 +3,7 @@ import { selectOrCreate } from "@visual-toolkit/d3-helpers";
 
 // Narrow the type so it matches selectOrCreate's parent parameter.
 function asParent<E extends Element>(
-  sel: Selection<E, unknown, null, undefined>
+  sel: Selection<E, unknown, null, undefined>,
 ): Selection<BaseType, unknown, BaseType, unknown> {
   return sel as unknown as Selection<BaseType, unknown, BaseType, unknown>;
 }

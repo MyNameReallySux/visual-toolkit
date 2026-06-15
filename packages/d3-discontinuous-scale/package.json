@@ -3,6 +3,30 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Piecewise-linear scale that compresses or skips gaps in an otherwise continuous domain",
+  "license": "MIT",
+  "author": "Chris Coppola",
+  "homepage": "https://github.com/MyNameReallySux/visual-toolkit/tree/main/packages/d3-discontinuous-scale#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyNameReallySux/visual-toolkit.git",
+    "directory": "packages/d3-discontinuous-scale"
+  },
+  "bugs": "https://github.com/MyNameReallySux/visual-toolkit/issues",
+  "keywords": [
+    "d3",
+    "d3-scale",
+    "linear-scale",
+    "discontinuous",
+    "broken-axis",
+    "gap",
+    "svg",
+    "typescript",
+    "visualization"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

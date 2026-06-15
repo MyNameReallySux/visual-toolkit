@@ -20,7 +20,7 @@ export function renderInContainer(
   wrap: HTMLElement,
   containerWidth: number,
   options: TransformFitOptions,
-  labelText: string
+  labelText: string,
 ): void {
   const { count, bandwidth, gap } = options;
 

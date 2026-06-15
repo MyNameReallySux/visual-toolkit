@@ -5,7 +5,7 @@ type Dimension = { width: number; height: number };
 
 function transformIfPresent(
   value: Optional<number>,
-  fn: Optional<(value: number) => number>
+  fn: Optional<(value: number) => number>,
 ): Optional<number> {
   if (value === undefined) return undefined;
   if (typeof fn === "function") return fn(value);
@@ -17,7 +17,7 @@ function transformIfPresent(
  * Missing coordinates default to `0`.
  */
 export function makeTranslateTransformFromPoint(
-  rect: Partial<Point> = {}
+  rect: Partial<Point> = {},
 ): string {
   return `translate(${rect.x ?? 0}, ${rect.y ?? 0})`;
 }
@@ -28,7 +28,7 @@ export function makeTranslateTransformFromPoint(
  */
 export function applyDimensionAsProps(
   rect: Partial<Dimension> = {},
-  transformProps: Partial<Record<keyof Dimension, (value: number) => number>> = {}
+  transformProps: Partial<Record<keyof Dimension, (value: number) => number>> = {},
 ): { width: Optional<number>; height: Optional<number> } {
   return {
     width: transformIfPresent(rect.width, transformProps.width),
@@ -45,7 +45,7 @@ export function applyRectangleAsProps(
   rect: Partial<Point & Dimension> = {},
   transformProps: Partial<
     Record<keyof (Point & Dimension), (value: number) => number>
-  > = {}
+  > = {},
 ): { transform: string; width: Optional<number>; height: Optional<number> } {
   return {
     transform: makeTranslateTransformFromPoint({
@@ -63,7 +63,7 @@ export function applyRectangleAsProps(
  */
 export function applyPointAsProps(
   rect: Partial<Point> = {},
-  transformProps: Partial<Record<keyof Point, (value: number) => number>> = {}
+  transformProps: Partial<Record<keyof Point, (value: number) => number>> = {},
 ): { x: Optional<number>; y: Optional<number> } {
   return {
     x: transformIfPresent(rect.x, transformProps.x),

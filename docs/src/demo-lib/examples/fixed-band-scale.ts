@@ -65,6 +65,6 @@ export function renderFixedBandScale(mount: HTMLElement, state: FixedBandState):
     `getRange() → ${scale.getRange()}px`,
     firstX0,
     lastX1,
-    TOP_Y + ROW_H + 14
+    TOP_Y + ROW_H + 14,
   );
 }

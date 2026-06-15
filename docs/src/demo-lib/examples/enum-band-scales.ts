@@ -5,26 +5,26 @@ import {
 import { makeSvg } from "../section-helpers.js";
 import { renderCell, renderLabel, ANNOTATION_COLOR, ANNOTATION_LINE_COLOR } from "../demo-render.js";
 
-type TrackKey  = "intro" | "verse" | "chorus" | "bridge" | "outro";
-type FixedKey  = "alpha" | "beta" | "gamma" | "delta" | "zeta";
+type TrackKey = "intro" | "verse" | "chorus" | "bridge" | "outro";
+type FixedKey = "alpha" | "beta" | "gamma" | "delta" | "zeta";
 
 type TrackItem = { key: TrackKey; bandwidth: number; color: string; label: string };
 type FixedItem = { key: FixedKey; isEnabled: boolean; label: string; color: string };
 
 const TRACK_ITEMS: TrackItem[] = [
-  { key: "intro",  bandwidth: 80,  color: "#4361ee", label: "Intro"  },
-  { key: "verse",  bandwidth: 120, color: "#7209b7", label: "Verse"  },
+  { key: "intro", bandwidth: 80, color: "#4361ee", label: "Intro" },
+  { key: "verse", bandwidth: 120, color: "#7209b7", label: "Verse" },
   { key: "chorus", bandwidth: 100, color: "#f72585", label: "Chorus" },
-  { key: "bridge", bandwidth: 60,  color: "#4cc9f0", label: "Bridge" },
-  { key: "outro",  bandwidth: 80,  color: "#06d6a0", label: "Outro"  },
+  { key: "bridge", bandwidth: 60, color: "#4cc9f0", label: "Bridge" },
+  { key: "outro", bandwidth: 80, color: "#06d6a0", label: "Outro" },
 ];
 
 const FIXED_ITEMS: FixedItem[] = [
-  { key: "alpha", isEnabled: true,  label: "Alpha",  color: "#4361ee" },
-  { key: "beta",  isEnabled: false, label: "Beta",   color: "#7209b7" },
-  { key: "gamma", isEnabled: true,  label: "Gamma",  color: "#f72585" },
-  { key: "delta", isEnabled: true,  label: "Delta",  color: "#4cc9f0" },
-  { key: "zeta",  isEnabled: false, label: "Zeta",   color: "#06d6a0" },
+  { key: "alpha", isEnabled: true, label: "Alpha", color: "#4361ee" },
+  { key: "beta", isEnabled: false, label: "Beta", color: "#7209b7" },
+  { key: "gamma", isEnabled: true, label: "Gamma", color: "#f72585" },
+  { key: "delta", isEnabled: true, label: "Delta", color: "#4cc9f0" },
+  { key: "zeta", isEnabled: false, label: "Zeta", color: "#06d6a0" },
 ];
 
 const PAD_LEFT = 16;
@@ -83,8 +83,8 @@ export function renderEnumBandScales(mount: HTMLElement, state?: EnumBandScaleSt
 
   // ── Rows 1 & 2: makeFixedEnumBandScale — isEnabled filtering ───────────────
   const fixedSectionLabelY = 80;
-  const refRowY   = 92;
-  const actRowY   = 152;
+  const refRowY = 92;
+  const actRowY = 152;
 
   const isOn = (item: FixedItem) =>
     enabledKeys ? enabledKeys.has(item.key) : item.isEnabled;
@@ -137,7 +137,7 @@ export function renderEnumBandScales(mount: HTMLElement, state?: EnumBandScaleSt
   // Actual layout row: makeFixedEnumBandScale — disabled entries filtered out, enabled packs together
   const fixedScale = makeFixedEnumBandScale(
     FIXED_ITEMS.map((item) => ({ key: item.key, isEnabled: isOn(item) })),
-    { bandwidth: FIXED_BW, gap: FIXED_GAP, padStart: PAD_LEFT }
+    { bandwidth: FIXED_BW, gap: FIXED_GAP, padStart: PAD_LEFT },
   );
 
   renderLabel(svg, "actual layout (collapsed)", PAD_LEFT, actRowY - 4, {
@@ -164,13 +164,13 @@ export function renderEnumBandScales(mount: HTMLElement, state?: EnumBandScaleSt
 
   // doesKeyExist readout
   const dkeY = actRowY + ROW_H + 14;
-  const betaExists  = fixedScale.doesKeyExist("beta");
+  const betaExists = fixedScale.doesKeyExist("beta");
   const alphaExists = fixedScale.doesKeyExist("alpha");
   renderLabel(
     svg,
     `doesKeyExist("beta") → ${betaExists}   doesKeyExist("alpha") → ${alphaExists}`,
     PAD_LEFT,
     dkeY,
-    { anchor: "start", size: 8, color: ANNOTATION_COLOR }
+    { anchor: "start", size: 8, color: ANNOTATION_COLOR },
   );
 }
