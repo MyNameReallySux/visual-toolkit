@@ -5,6 +5,10 @@ import starlightTypeDoc, { typeDocSidebarGroup } from "starlight-typedoc";
 
 // https://astro.build/config
 export default defineConfig({
+  // Canonical origin for the sitemap and SEO tags. Set to the GitHub Pages URL
+  // by default; change to the real origin (or add `base` for a sub-path deploy)
+  // when the docs site is hosted elsewhere.
+  site: "https://mynamereallysux.github.io/visual-toolkit",
   integrations: [
     starlight({
       title: "visual-toolkit",
@@ -12,8 +16,11 @@ export default defineConfig({
         "Typed scale factories and SVG/D3 utilities built on d3-scale.",
       customCss: ["./src/styles/custom.css"],
       social: [
-        // placeholder until the repo is published
-        { icon: "github", label: "GitHub", href: "https://github.com" },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/MyNameReallySux/visual-toolkit",
+        },
       ],
       sidebar: [
         { label: "Getting Started", link: "/" },
