@@ -1,5 +1,8 @@
 # visual-toolkit
 
+[![CI](https://github.com/MyNameReallySux/visual-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/MyNameReallySux/visual-toolkit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A monorepo of typed D3 and SVG utilities built on `d3-scale`. All packages are ESM-first, built with tsup, tested with vitest, and ship full type declarations with source maps.
 
 ---
@@ -54,6 +57,28 @@ pnpm build
 
 # Run all tests
 pnpm test
+
+# Type-check and lint
+pnpm typecheck
+pnpm lint
 ```
 
-Requires Node >= 20 and pnpm.
+Requires Node >= 20 and pnpm 11 (`corepack enable` provisions the pinned
+version).
+
+---
+
+## Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for the dev
+workflow, coding conventions, and the changeset-based release process. In short:
+branch off `main`, keep `pnpm lint && pnpm typecheck && pnpm test && pnpm build`
+green, and run `pnpm changeset` to record a release note for any user-facing
+change.
+
+---
+
+## License
+
+[MIT](LICENSE) © Chris Coppola
+

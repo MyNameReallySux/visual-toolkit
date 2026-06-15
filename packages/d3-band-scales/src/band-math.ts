@@ -35,7 +35,7 @@ export function calculateX1(x0: number, bandwidth: number): number {
  */
 export function calculateFitScaleFactor(
   contentLength: number,
-  containerLength: number
+  containerLength: number,
 ): number {
   return contentLength === 0 ? 1 : containerLength / contentLength;
 }

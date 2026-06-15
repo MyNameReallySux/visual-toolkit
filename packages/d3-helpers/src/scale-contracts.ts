@@ -24,5 +24,5 @@ export type ExtractSuffixFromString<
 > = T extends `${string}${Sep}${infer Suffix}` ? Suffix : never;
 
 /** Convert a numeric-string literal to its number type. */
-export type ToNumber<T extends string> =
-  T extends `${infer N extends number}` ? N : never;
+export type ToNumber<T extends string>
+  = T extends `${infer N extends number}` ? N : never;

@@ -24,7 +24,7 @@ export function renderCssNumbers(mount: HTMLElement): void {
     `bandwidth:"80px", gap:"12px" → parsed same as numbers`,
     16,
     12,
-    { anchor: "start", size: 9, weight: 700, color: ANNOTATION_COLOR }
+    { anchor: "start", size: 9, weight: 700, color: ANNOTATION_COLOR },
   );
 
   ITEMS.forEach((id, i) => {
@@ -46,5 +46,4 @@ export function renderCssNumbers(mount: HTMLElement): void {
       color: ANNOTATION_COLOR,
     });
   });
-
 }

@@ -94,7 +94,7 @@ export type DynamicBandScaleOptions<T, Input> = {
    *   are multiplied by `scaleTo / naturalRange` so the content fills exactly
    *   `scaleTo` pixels. Margins scale proportionally.
    */
-  scaleTo?: 'content' | AnyCssNumber;
+  scaleTo?: "content" | AnyCssNumber;
 };
 
 /**
@@ -104,7 +104,7 @@ export type DynamicBandScaleOptions<T, Input> = {
  */
 export function makeDynamicBandScale<T, Input extends Id>(
   data: T[],
-  options: DynamicBandScaleOptions<T, Input>
+  options: DynamicBandScaleOptions<T, Input>,
 ): DynamicBandScale<Input> {
   const gapFromOptions = stripSuffixFromCssNumber(options.gap ?? 0);
   const padStart = stripSuffixFromCssNumber(options.padStart ?? 0);
@@ -113,19 +113,19 @@ export function makeDynamicBandScale<T, Input extends Id>(
   const globalContentOffsetEnd = stripSuffixFromCssNumber(options.contentOffsetEnd ?? 0);
 
   const bandwidthScale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
   const x0Scale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
   const x1Scale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
   const contentOffsetStartScale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
   const contentOffsetEndScale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
 
   // Deduplicate domain — keep first occurrence, warn on duplicates (M4)
@@ -154,18 +154,18 @@ export function makeDynamicBandScale<T, Input extends Id>(
     const id = options.selectId(d);
     const width = stripSuffixFromCssNumber(options.selectBandwidth(d));
     const perItemGap = options.selectGap?.(d);
-    const gap =
-      perItemGap !== undefined
+    const gap
+      = perItemGap !== undefined
         ? stripSuffixFromCssNumber(perItemGap)
         : gapFromOptions;
     const perItemCos = options.selectContentOffsetStart?.(d);
-    const resolvedCos =
-      perItemCos !== undefined
+    const resolvedCos
+      = perItemCos !== undefined
         ? stripSuffixFromCssNumber(perItemCos)
         : globalContentOffsetStart;
     const perItemCoe = options.selectContentOffsetEnd?.(d);
-    const resolvedCoe =
-      perItemCoe !== undefined
+    const resolvedCoe
+      = perItemCoe !== undefined
         ? stripSuffixFromCssNumber(perItemCoe)
         : globalContentOffsetEnd;
     domain.push(id);
@@ -227,8 +227,8 @@ export function makeDynamicBandScale<T, Input extends Id>(
 
   // Resolve scale factor from scaleTo option
   const scaleToOpt = options.scaleTo;
-  const k: number =
-    scaleToOpt === undefined || scaleToOpt === 'content'
+  const k: number
+    = scaleToOpt === undefined || scaleToOpt === "content"
       ? 1
       : calculateFitScaleFactor(naturalRange, stripSuffixFromCssNumber(scaleToOpt));
 
@@ -333,10 +333,10 @@ export function makeDynamicBandScale<T, Input extends Id>(
     const cx = getCX(input);
 
     if (
-      bandwidth === undefined ||
-      x0 === undefined ||
-      x1 === undefined ||
-      cx === undefined
+      bandwidth === undefined
+      || x0 === undefined
+      || x1 === undefined
+      || cx === undefined
     ) {
       return undefined;
     }
@@ -353,7 +353,7 @@ export function makeDynamicBandScale<T, Input extends Id>(
   }
 
   function dynamicBandScaleConstructor(
-    input: Input
+    input: Input,
   ): Optional<DynamicScaleOutput> {
     return getOutput(input);
   }
@@ -390,7 +390,7 @@ export function makeDynamicBandScale<T, Input extends Id>(
 export function calculateLengthFromDynamicBands(
   bandwidths: number[],
   gap: number,
-  options?: { padStart?: number; padEnd?: number }
+  options?: { padStart?: number; padEnd?: number },
 ): number {
   const total = bandwidths.reduce((acc, bw) => acc + bw, 0);
   const ps = options?.padStart ?? 0;

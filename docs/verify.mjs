@@ -58,7 +58,7 @@ async function run() {
 
     const r = await page.evaluate(() => ({
       svgs: document.querySelectorAll(".demo-card svg, .svg-canvas svg").length,
-      sliders: document.querySelectorAll('input[type="range"]').length,
+      sliders: document.querySelectorAll("input[type=\"range\"]").length,
       buttons: document.querySelectorAll(".demo-card button").length,
       usageBlocks: document.querySelectorAll(".expressive-code").length,
       fullSource: Array.from(document.querySelectorAll("details.full-source")).map((d) => d.open),

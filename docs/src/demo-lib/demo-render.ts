@@ -26,7 +26,7 @@ export type CellOptions = {
 export function renderCell(
   svg: SVGSVGElement,
   rect: Rect,
-  options: CellOptions
+  options: CellOptions,
 ): SVGRectElement {
   const el = document.createElementNS(SVG_NS, "rect");
   el.setAttribute("x", String(rect.x));
@@ -55,7 +55,7 @@ export function renderLabel(
   text: string,
   x: number,
   y: number,
-  options: LabelOptions = {}
+  options: LabelOptions = {},
 ): SVGTextElement {
   const el = document.createElementNS(SVG_NS, "text");
   el.setAttribute("x", String(x));
@@ -82,7 +82,7 @@ export function renderLine(
   y1: number,
   x2: number,
   y2: number,
-  options: LineOptions = {}
+  options: LineOptions = {},
 ): SVGLineElement {
   const el = document.createElementNS(SVG_NS, "line");
   el.setAttribute("x1", String(x1));
@@ -105,7 +105,7 @@ export function renderDimensionLine(
   label: string,
   x1: number,
   x2: number,
-  y: number
+  y: number,
 ): void {
   renderLine(svg, x1, y, x2, y);
   renderLabel(svg, label, (x1 + x2) / 2, y - 2, {

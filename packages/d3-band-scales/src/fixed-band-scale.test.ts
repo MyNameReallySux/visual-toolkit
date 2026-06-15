@@ -166,7 +166,7 @@ describe("makeFixedBandScale — padStart + padEnd", () => {
         gap: 10,
         padStart: 20,
         padEnd: 15,
-      })
+      }),
     ).toBe(scale.getRange());
   });
 });
@@ -266,12 +266,12 @@ describe("makeFixedBandScale — contentOffsetStart + contentOffsetEnd (global)"
   });
 
   it("getContentX0 = x0 + contentOffsetStart", () => {
-    expect(scale.getContentX0("a")).toBe(12);  // x0=0 + 12
+    expect(scale.getContentX0("a")).toBe(12); // x0=0 + 12
     expect(scale.getContentX0("b")).toBe(122); // x0=110 + 12
   });
 
   it("getContentX1 = x1 − contentOffsetEnd", () => {
-    expect(scale.getContentX1("a")).toBe(92);  // x1=100 − 8
+    expect(scale.getContentX1("a")).toBe(92); // x1=100 − 8
     expect(scale.getContentX1("b")).toBe(202); // x1=210 − 8
   });
 
@@ -380,19 +380,19 @@ describe("calculateLengthFromFixedBandsWithGaps", () => {
 
   it("handles px strings", () => {
     expect(
-      calculateLengthFromFixedBandsWithGaps(2, { bandwidth: "50px", gap: "5px" })
+      calculateLengthFromFixedBandsWithGaps(2, { bandwidth: "50px", gap: "5px" }),
     ).toBe(105); // 2*50 + 1*5
   });
 
   it("includes padStart and padEnd", () => {
     expect(
-      calculateLengthFromFixedBandsWithGaps(3, { bandwidth: 100, gap: 10, padStart: 20, padEnd: 15 })
+      calculateLengthFromFixedBandsWithGaps(3, { bandwidth: 100, gap: 10, padStart: 20, padEnd: 15 }),
     ).toBe(355); // 20 + 320 + 15
   });
 
   it("handles fractional px strings (M1)", () => {
     expect(
-      calculateLengthFromFixedBandsWithGaps(2, { bandwidth: "12.5px", gap: "0.5px" })
+      calculateLengthFromFixedBandsWithGaps(2, { bandwidth: "12.5px", gap: "0.5px" }),
     ).toBeCloseTo(25.5); // 2*12.5 + 0.5
   });
 });
@@ -449,7 +449,7 @@ describe("makeFixedBandScale — scaleTo: numeric (ported from fit-to-length)", 
 describe("makeFixedBandScale — scaleTo: 'content' (default behavior)", () => {
   it("scaleTo: 'content' behaves identically to omitting scaleTo", () => {
     const base = makeFixedBandScale(items, { selectId: (d) => d.id, bandwidth: 100, gap: 10 });
-    const explicit = makeFixedBandScale(items, { selectId: (d) => d.id, bandwidth: 100, gap: 10, scaleTo: 'content' });
+    const explicit = makeFixedBandScale(items, { selectId: (d) => d.id, bandwidth: 100, gap: 10, scaleTo: "content" });
     expect(explicit.getBandwidth()).toBe(base.getBandwidth());
     expect(explicit.getRange()).toBe(base.getRange());
     expect(explicit.getScaleFactor()).toBe(1);

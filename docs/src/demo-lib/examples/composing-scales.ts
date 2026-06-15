@@ -63,7 +63,7 @@ export function renderComposingScales(mount: HTMLElement): void {
     GROUPS.map(({ id }) => [
       id,
       makeEnumBandScale(INNER_SECTIONS[id], { gap: INNER_GAP }),
-    ])
+    ]),
   );
 
   const contentH = calculateLengthFromFixedBandsWithGaps(ROW_IDS.length, {

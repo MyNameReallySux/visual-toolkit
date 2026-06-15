@@ -24,4 +24,4 @@ const fitted = makeFixedBandScale(items, {
   scaleTo: 500,
 });
 fitted.getScaleFactor(); // → 1.85
-fitted.getRange();       // → 500
+fitted.getRange(); // → 500

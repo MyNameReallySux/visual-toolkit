@@ -5,10 +5,10 @@ import { selectOrCreate } from "@visual-toolkit/d3-helpers";
 type CategoryItem = { id: string; color: string };
 
 export const ALL_CATEGORIES: CategoryItem[] = [
-  { id: "Alpha",   color: "#4361ee" },
-  { id: "Beta",    color: "#7209b7" },
-  { id: "Gamma",   color: "#f72585" },
-  { id: "Delta",   color: "#4cc9f0" },
+  { id: "Alpha", color: "#4361ee" },
+  { id: "Beta", color: "#7209b7" },
+  { id: "Gamma", color: "#f72585" },
+  { id: "Delta", color: "#4cc9f0" },
   { id: "Epsilon", color: "#06d6a0" },
 ];
 
@@ -17,7 +17,7 @@ const GAP = 10;
 const SVG_HEIGHT = 100;
 
 function asParent<E extends Element, D>(
-  sel: Selection<E, D, null, undefined>
+  sel: Selection<E, D, null, undefined>,
 ): Selection<BaseType, D, BaseType, unknown> {
   return sel as unknown as Selection<BaseType, D, BaseType, unknown>;
 }
@@ -26,7 +26,7 @@ function asParent<E extends Element, D>(
 export function renderSelectOrCreate(
   svgEl: SVGSVGElement,
   categories: CategoryItem[],
-  callCount: number
+  callCount: number,
 ): void {
   const $svg = select<SVGSVGElement, unknown>(svgEl);
 
@@ -74,6 +74,6 @@ export function renderSelectOrCreate(
     .attr("font-size", "10")
     .attr("fill", "#6c757d")
     .text(
-      `render() called ${callCount} time${callCount === 1 ? "" : "s"} — ${rectCount} rect${rectCount === 1 ? "" : "s"} in DOM`
+      `render() called ${callCount} time${callCount === 1 ? "" : "s"} — ${rectCount} rect${rectCount === 1 ? "" : "s"} in DOM`,
     );
 }

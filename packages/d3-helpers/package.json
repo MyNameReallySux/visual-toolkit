@@ -3,6 +3,27 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Shared scale contracts, CSS number utilities, SVG helpers, and D3 selection utilities",
+  "license": "MIT",
+  "author": "Chris Coppola",
+  "homepage": "https://github.com/MyNameReallySux/visual-toolkit/tree/main/packages/d3-helpers#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyNameReallySux/visual-toolkit.git",
+    "directory": "packages/d3-helpers"
+  },
+  "bugs": "https://github.com/MyNameReallySux/visual-toolkit/issues",
+  "keywords": [
+    "d3",
+    "d3-selection",
+    "svg",
+    "css-units",
+    "typescript",
+    "visualization"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

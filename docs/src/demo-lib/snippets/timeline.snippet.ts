@@ -15,7 +15,7 @@ const scale = makeDiscontinuousLinearScale(values, {
   minToSkip: 12, // gaps ≥ 12 units are compressed into break markers
 });
 
-scale.getX(8);           // → 20    (domain start maps to range start)
-scale.getX(17);          // → 211.25 (end of day-1 continuous bin)
-scale.getX(32);          // → 275   (start of day-2 bin, after overnight skip)
-scale.getSkipWidth(0);   // → 42.5  (pixel width of the first break marker)
+scale.getX(8); // → 20    (domain start maps to range start)
+scale.getX(17); // → 211.25 (end of day-1 continuous bin)
+scale.getX(32); // → 275   (start of day-2 bin, after overnight skip)
+scale.getSkipWidth(0); // → 42.5  (pixel width of the first break marker)

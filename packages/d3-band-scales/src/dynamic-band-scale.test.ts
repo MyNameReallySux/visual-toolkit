@@ -93,7 +93,7 @@ describe("makeDynamicBandScale — contentOffsetStart (global)", () => {
       selectId: (d) => d.id,
       selectBandwidth: (d) => d.width,
       contentOffsetStart: 15,
-    }
+    },
   );
 
   it("getContentX0 offsets from x0", () => {
@@ -116,7 +116,7 @@ describe("makeDynamicBandScale — contentOffsetEnd (global)", () => {
       selectId: (d) => d.id,
       selectBandwidth: (d) => d.width,
       contentOffsetEnd: 10,
-    }
+    },
   );
 
   it("getContentX1 = x1 − end offset", () => {
@@ -141,7 +141,7 @@ describe("makeDynamicBandScale — both global content offsets", () => {
       selectBandwidth: (d) => d.width,
       contentOffsetStart: 10,
       contentOffsetEnd: 15,
-    }
+    },
   );
 
   it("getContentX0 = x0 + start", () => {
@@ -194,8 +194,8 @@ describe("makeDynamicBandScale — per-item content offset overrides", () => {
   });
 
   it("p uses global start and end", () => {
-    expect(scale.getContentX0("p")).toBe(5);   // x0=0 + 5
-    expect(scale.getContentX1("p")).toBe(75);  // x1=80 − 5
+    expect(scale.getContentX0("p")).toBe(5); // x0=0 + 5
+    expect(scale.getContentX1("p")).toBe(75); // x1=80 − 5
     expect(scale.getContentBandwidth("p")).toBe(70); // 80 − 5 − 5
   });
 
@@ -223,7 +223,7 @@ describe("makeDynamicBandScale — clamp to 0 when offsets >= bandwidth", () => 
         selectBandwidth: (d) => d.width,
         contentOffsetStart: 30,
         contentOffsetEnd: 30,
-      }
+      },
     );
     expect(scale.getContentBandwidth("x")).toBe(0);
   });
@@ -339,7 +339,7 @@ describe("makeDynamicBandScale — AnyCssNumber (M1)", () => {
       {
         selectId: (d) => d.id,
         selectBandwidth: (d) => d.width,
-      }
+      },
     );
     expect(scale.getBandwidth("a")).toBeCloseTo(60);
   });
@@ -351,7 +351,7 @@ describe("makeDynamicBandScale — AnyCssNumber (M1)", () => {
         selectId: (d) => d.id,
         selectBandwidth: (d) => d.width,
         padStart: "1.5rem",
-      }
+      },
     );
     expect(scale.getX0("a")).toBeCloseTo(1.5);
   });
@@ -438,7 +438,7 @@ describe("makeDynamicBandScale — scaleTo: 'content' (default behavior)", () =>
   it("scaleTo: 'content' behaves identically to omitting scaleTo", () => {
     const items = [{ id: "X", width: 100 }, { id: "Y", width: 60 }];
     const base = makeDynamicBandScale(items, { selectId: (d) => d.id, selectBandwidth: (d) => d.width, gap: 10 });
-    const explicit = makeDynamicBandScale(items, { selectId: (d) => d.id, selectBandwidth: (d) => d.width, gap: 10, scaleTo: 'content' });
+    const explicit = makeDynamicBandScale(items, { selectId: (d) => d.id, selectBandwidth: (d) => d.width, gap: 10, scaleTo: "content" });
     expect(explicit.getRange()).toBe(base.getRange());
     expect(explicit.getScaleFactor()).toBe(1);
     expect(explicit.getX0("Y")).toBe(base.getX0("Y"));

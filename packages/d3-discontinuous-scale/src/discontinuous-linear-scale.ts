@@ -103,7 +103,7 @@ type SplitIntoContinuousBinsOptions<Input extends NumberLike> = {
 
 function splitIntoContinuousBins<Input extends NumberLike>(
   inputs: Input[],
-  options: SplitIntoContinuousBinsOptions<Input>
+  options: SplitIntoContinuousBinsOptions<Input>,
 ): SkipEntryOrValueArray<Input>[] {
   const { minToSkip, calculateDistance, getRelativeValueFromDistance } = options;
 
@@ -134,7 +134,7 @@ function splitIntoContinuousBins<Input extends NumberLike>(
         continuousBuffer = [];
         const nextValue = getRelativeValueFromDistance(
           value,
-          distanceFromPrevious + 1
+          distanceFromPrevious + 1,
         );
         alternatingBins.push([
           {
@@ -169,7 +169,7 @@ function getArrayFromSingleOrArray<T>(value: T | T[]): T[] {
 
 function hasKey<T extends object, K extends string>(
   obj: T,
-  key: K
+  key: K,
 ): obj is T & Record<K, unknown> {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
@@ -222,7 +222,7 @@ export type MakeDiscontinuousLinearScaleOptions<T, Input extends NumberLike> = {
  */
 export function makeDiscontinuousLinearScale<T, Input extends NumberLike>(
   data: T[],
-  options: MakeDiscontinuousLinearScaleOptions<T, Input>
+  options: MakeDiscontinuousLinearScaleOptions<T, Input>,
 ): DiscontinuousLinearScale<Input> {
   let startingX: number;
   let span: number;
@@ -434,7 +434,7 @@ export function makeDiscontinuousLinearScale<T, Input extends NumberLike>(
 
       runningItemIndex++;
       return outputBin;
-    }
+    },
   );
 
   const binEntries = binsWithMeta.flatMap((bin) => {
@@ -459,11 +459,11 @@ export function makeDiscontinuousLinearScale<T, Input extends NumberLike>(
       item,
       bin: entry.bin,
       scale: entry.scale,
-    }))
+    })),
   );
 
   const ordinalBinDomain = invertedBinEntries.map((b) =>
-    convertValueToKey(b.item as Input)
+    convertValueToKey(b.item as Input),
   );
   const ordinalBinRange = invertedBinEntries as HigherOrderScaleEntry<Input>[];
 
@@ -481,8 +481,8 @@ export function makeDiscontinuousLinearScale<T, Input extends NumberLike>(
   }
 
   function getTicks(count?: Optional<SingleOrArray<number>>): number[][] {
-    const counts =
-      count !== undefined ? getArrayFromSingleOrArray(count) : undefined;
+    const counts
+      = count !== undefined ? getArrayFromSingleOrArray(count) : undefined;
 
     function getTickCount(i: number): number | undefined {
       return counts?.[i % counts.length];
@@ -519,13 +519,13 @@ export function makeDiscontinuousLinearScale<T, Input extends NumberLike>(
   }
 
   function discontinuousLinearScaleConstructor(
-    input: Input
+    input: Input,
   ): Optional<DiscontinuousLinearScaleOutput> {
     return { x: getX(input) };
   }
 
-  const discontinuousLinearScale =
-    discontinuousLinearScaleConstructor as DiscontinuousLinearScale<Input>;
+  const discontinuousLinearScale
+    = discontinuousLinearScaleConstructor as DiscontinuousLinearScale<Input>;
 
   discontinuousLinearScale.getBin = getBin;
   discontinuousLinearScale.getX = getX;

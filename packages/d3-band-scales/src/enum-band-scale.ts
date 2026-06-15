@@ -17,6 +17,9 @@ export type EnumLayoutEntry<Key extends string = string> = {
 };
 
 /** Callable scale keyed by string literal enum values, with per-item bandwidth. */
+// Intentionally a named empty interface so the type surfaces under its own name
+// in API docs and type errors rather than as a `DynamicBandScale` alias.
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface EnumBandScale<Key extends string = string>
   extends DynamicBandScale<Key> {}
 
@@ -33,7 +36,7 @@ export type EnumBandScaleOptions<Key extends string> = Omit<
  */
 export function makeEnumBandScale<Key extends string>(
   items: EnumLayoutEntry<Key>[],
-  options?: Optional<EnumBandScaleOptions<Key>>
+  options?: Optional<EnumBandScaleOptions<Key>>,
 ): EnumBandScale<Key> {
   return makeDynamicBandScale(items, {
     ...options,

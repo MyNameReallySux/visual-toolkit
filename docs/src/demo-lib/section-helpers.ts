@@ -22,7 +22,7 @@ export function makeSvg(
   mount: HTMLElement,
   width: number,
   height: number,
-  options?: MakeSvgOptions
+  options?: MakeSvgOptions,
 ): SVGSVGElement {
   const cls = options?.className ?? "demo-svg";
   let svg = mount.querySelector<SVGSVGElement>(`svg.${cls}`);
@@ -55,7 +55,7 @@ export type MakeSliderOptions = {
  */
 export function makeSlider(
   container: HTMLElement,
-  options: MakeSliderOptions
+  options: MakeSliderOptions,
 ): HTMLInputElement {
   const { labelText, min, max, initial, onChange } = options;
 

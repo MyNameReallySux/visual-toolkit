@@ -93,7 +93,7 @@ export type FixedBandScaleOptions<T, Input> = {
    *   are multiplied by `scaleTo / naturalRange` so the content fills exactly
    *   `scaleTo` pixels. Margins scale proportionally.
    */
-  scaleTo?: 'content' | AnyCssNumber;
+  scaleTo?: "content" | AnyCssNumber;
 };
 
 type ReduceAccumulator = {
@@ -112,7 +112,7 @@ function makeReduceDomainToPoints<T>(options: {
   return function reduceDomainToPoints(
     output: ReduceAccumulator,
     _: T,
-    index: number
+    index: number,
   ): ReduceAccumulator {
     const previousX1 = output.x1s[index - 1] ?? 0;
     const x0 = index === 0 ? padStart : calculateX0(previousX1, gap);
@@ -137,7 +137,7 @@ export function calculateLengthFromFixedBandsWithGaps(
     gap: AnyCssNumber;
     padStart?: Optional<AnyCssNumber>;
     padEnd?: Optional<AnyCssNumber>;
-  }
+  },
 ): number {
   const bw = stripSuffixFromCssNumber(options.bandwidth);
   const gap = stripSuffixFromCssNumber(options.gap);
@@ -152,7 +152,7 @@ export function calculateLengthFromFixedBandsWithGaps(
  */
 export function makeFixedBandScale<T, Input extends Id>(
   data: T[],
-  options: FixedBandScaleOptions<T, Input>
+  options: FixedBandScaleOptions<T, Input>,
 ): FixedBandScale<Input> {
   const bandwidth = stripSuffixFromCssNumber(options.bandwidth);
   const gap = stripSuffixFromCssNumber(options.gap ?? 0);
@@ -162,10 +162,10 @@ export function makeFixedBandScale<T, Input extends Id>(
   const contentOffsetEnd = stripSuffixFromCssNumber(options.contentOffsetEnd ?? 0);
 
   const x0Scale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
   const x1Scale = scaleOrdinal<Input, number>().unknown(
-    undefined as unknown as number
+    undefined as unknown as number,
   );
 
   // Deduplicate domain — keep first occurrence, warn on duplicates (M4)
@@ -224,7 +224,7 @@ export function makeFixedBandScale<T, Input extends Id>(
       x0s: [] as number[],
       x1s: [] as number[],
       maxX: 0,
-    }
+    },
   );
 
   const naturalMaxX = maxX + padEnd;
@@ -232,8 +232,8 @@ export function makeFixedBandScale<T, Input extends Id>(
 
   // Resolve scale factor from scaleTo option
   const scaleToOpt = options.scaleTo;
-  const k: number =
-    scaleToOpt === undefined || scaleToOpt === 'content'
+  const k: number
+    = scaleToOpt === undefined || scaleToOpt === "content"
       ? 1
       : calculateFitScaleFactor(naturalRange, stripSuffixFromCssNumber(scaleToOpt));
 
@@ -307,7 +307,7 @@ export function makeFixedBandScale<T, Input extends Id>(
 
   function getExtentOfSpan(
     startAt: Input,
-    endAt: Input
+    endAt: Input,
   ): Optional<Extent> {
     const min = x0Scale(startAt) as Optional<number>;
     const max = x1Scale(endAt) as Optional<number>;
@@ -344,7 +344,7 @@ export function makeFixedBandScale<T, Input extends Id>(
   }
 
   function fixedBandScaleConstructor(
-    input: Input
+    input: Input,
   ): Optional<FixedScaleOutput> {
     return getOutput(input);
   }
